@@ -1,0 +1,347 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+
+body{
+    font-family: Arial;
+}
+
+
+.nav{
+    background-color: #1f3f7a;
+
+    --img1: scale(1);
+    --img2: scale(0);
+}
+
+.nav:has( .dropdown:target ){
+    --img1: scale(0);
+    --img2: scale(1);
+
+    --clip:inset(0 0 0 0);
+
+}
+
+.nav__container{
+    width: 90%;
+    margin: 0 auto;
+    height: 70px;
+
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-areas: "title img";
+    justify-content: space-between;
+    align-items: center;
+
+    overflow: hidden;
+}
+
+.nav__title{
+    color: #fff;
+    grid-area: title;
+}
+
+
+.nav__menu{
+    grid-area: img;
+    position: relative;
+    z-index: 10;
+
+    transform: var(--img1);
+}
+
+.nav__menu--second{
+    transform: var(--img2);
+}
+
+.nav__icon{
+    width: 30px;
+    display: block;
+}
+
+.dropdown{
+    position: absolute;
+    background-color: #972727;
+    width: 75%;
+    max-width: 300px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 1em;
+    z-index: 2;
+    display: grid;
+    align-content:center ;
+    gap: 1rem;
+
+    overflow-y: auto;
+
+
+    clip-path: var(--clip, inset(0 0 100% 100%));
+    transition: clip-path .5s;
+}
+
+.dropdown__list{
+    list-style: none;
+}
+
+.dropdown__link{
+    color: rgb(184, 187, 191);
+    padding: 1em .7em;
+    text-decoration: none;
+    
+    display: flex;
+    align-items: center;
+    gap: .6rem;
+
+    position: relative;
+    background-color: var(--bg, transparent);
+    border-radius: 6px;
+}
+
+.dropdown__list:has( :checked ){
+    --rows: 1fr;
+    --rotate: rotate(180deg);
+    --bg: #1b327c;
+}
+
+.dropdown__check{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.dropdown__arrow{
+    margin-left: auto;
+    transform: var(--rotate, 0);
+    transition: .2s transform;
+}
+
+.dropdown__content{
+    display: grid;
+    grid-template-rows: var(--rows, 0fr);
+    transition: .3s grid-template-rows;
+}
+
+.dropdown__sub{
+    overflow: hidden;
+
+}
+
+.dropdown__li{
+    width: 85%;
+    list-style: none;
+    margin-left: auto;
+}
+
+.dropdown__anchor{
+    padding: 1em 0;
+    display: block;
+    color: #B6BABE;
+    text-decoration: none;
+}
+
+.dropdown__icon{
+    width: 20%;
+}
+
+@media screen and (max-width: 767px) {
+    .dropdown{
+    background-color: #cd5353;
+    width: 100%;
+    max-width: 420px;
+}
+    }
+
+/*Pagina principal*/
+/*Logo*/
+.pagina_principal{
+    position: absolute;
+width: 231px;
+height: 172px;
+left: calc(50% - 231px/2 - 0.5px);
+top: 140px;
+
+
+border-radius: 40px 40px 40px 0px;
+}
+/*Parrafo */
+.pagina_principal_parrafo{
+    position: absolute;
+width: 517px;
+height: 179px;
+left: 240px;
+top: 330px;
+
+font-family: 'Inter';
+font-style: italic;
+font-weight: 800;
+font-size: 24px;
+line-height: 29px;
+display: flex;
+align-items: center;
+text-align: center;
+
+color: #110808;
+}
+
+/*imagenes platos*/
+
+.plato1{
+    position: absolute;
+width: 157px;
+height: 127px;
+left: 150px;
+top: 550px;
+
+
+border-radius: 10px;
+}
+.plato2{
+    position: absolute;
+width: 157px;
+height: 127px;
+left: 350px;
+top: 550px;
+
+
+border-radius: 10px;
+}
+.plato3{
+    position: absolute;
+width: 152px;
+height: 127px;
+left: 550px;
+top: 550px;
+
+
+border-radius: 10px;
+}
+.plato4{
+    position: absolute;
+width: 162px;
+height: 127px;
+left: 750px;
+top: 550px;
+
+
+border-radius: 10px;
+}
+
+@media screen and (max-width: 767px) {
+    .pagina_principal_parrafo{
+        position: absolute;
+        width: 231px;
+        height: 172px;
+        left: calc(50% - 231px/2 - 0.5px);
+        top: 400px;
+    }
+    
+  .plato1{
+    position: absolute;
+        width: 231px;
+        height: 172px;
+        left: calc(50% - 231px/2 - 0.5px);
+        top: 650px;
+  }
+  .plato2{
+    position: absolute;
+        width: 231px;
+        height: 172px;
+        left: calc(50% - 231px/2 - 0.5px);
+        top: 850px;
+  }
+  .plato3{
+    position: absolute;
+        width: 231px;
+        height: 172px;
+        left: calc(50% - 231px/2 - 0.5px);
+        top: 1050px;
+  }
+  .plato4{
+    position: absolute;
+        width: 231px;
+        height: 172px;
+        left: calc(50% - 231px/2 - 0.5px);
+        top: 1250px;
+  }
+}
+
+/*Redes sociales*/
+
+#btn-mas{
+    display: none;
+}
+.container{
+    position: fixed;
+    bottom: 15rem;
+    right: 50rem;
+}
+.redes a, .btn-mas label{
+    display: block;
+    text-decoration: none;
+    background: #c72525;
+    color: #fff;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    border-radius: 50%;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.4);
+    transition: all 500ms ease;
+}
+.redes a:hover{
+    background: #fff;
+    color: #194387;
+}
+.redes a{
+    margin-bottom: -15px;
+    opacity: 0;
+    visibility: hidden;
+}
+#btn-mas:checked~ .redes a{
+    margin-bottom: 10px;
+    opacity: 1;
+    visibility: visible;
+}
+.btn-mas label{
+    cursor: pointer;
+    background: #184bab;
+    font-size: 23px;
+}
+#btn-mas:checked ~ .btn-mas label{
+    transform: rotate(135deg);
+    font-size: 25px;
+}
+
+
+/*Boton Whastapp*/
+
+.boton a i.fa-whatsapp {
+    cursor: pointer;
+    color: #25D366;
+    font-size: 55px;
+    position:absolute;
+    top: 29rem;
+    left: 10rem;
+    
+}
+
+/* Estilo de enlace */
+.boton a {
+    text-decoration: none;
+}
+
+/* Estilo del contenedor */
+.boton {
+    display: inline-block;
+}
+
+.boton a i.fa-whatsapp{
+    margin-bottom: 10px;
+    opacity: 1;
+    visibility: visible;
+}
