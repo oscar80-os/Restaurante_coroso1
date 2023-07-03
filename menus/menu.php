@@ -1,5 +1,4 @@
 <?php
-
 // Conexión a la base de datos (MySQL)
 $servername = "localhost";
 $username = "root";
@@ -12,38 +11,58 @@ if ($conn->connect_error) {
 }
 
 // Crear un nuevo menú
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["crear_menu"])) {
     $platos = $_POST["platos"];
     $descripcion = $_POST["descripcion"];
     $precio = $_POST["precio"];
     $opcionesPersonalizacion = $_POST["opcionesPersonalizacion"];
 
-    $sql = "INSERT INTO menus (platos, descripcion, precio, opciones_personalizacion) VALUES ('$platos', '$descripcion', '$precio', '$opcionesPersonalizacion')";
+    // Validación y filtrado de datos
+    $platos = mysqli_real_escape_string($conn, $platos);
+    $descripcion = mysqli_real_escape_string($conn, $descripcion);
+    $precio = mysqli_real_escape_string($conn, $precio);
+    $opcionesPersonalizacion = mysqli_real_escape_string($conn, $opcionesPersonalizacion);
 
-    if ($conn->query($sql) === TRUE) {
+    $stmt = $conn->prepare("INSERT INTO menus (platos, descripcion, precio, opciones_personalizacion) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $platos, $descripcion, $precio, $opcionesPersonalizacion);
+
+    if ($stmt->execute()) {
         echo "Menú creado exitosamente";
+        exit();
     } else {
         echo "Error al crear el menú: " . $conn->error;
     }
+
+    $stmt->close();
 }
 
 // Actualizar un menú existente
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+elseif ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["actualizar_menu"])) {
     $id = $_POST["id"];
     $platos = $_POST["platos"];
     $descripcion = $_POST["descripcion"];
     $precio = $_POST["precio"];
     $opcionesPersonalizacion = $_POST["opcionesPersonalizacion"];
 
-    $sql = "UPDATE menus SET platos='$platos', descripcion='$descripcion', precio='$precio', opciones_personalizacion='$opcionesPersonalizacion' WHERE id='$id'";
+    // Validación y filtrado de datos
+    $id = mysqli_real_escape_string($conn, $id);
+    $platos = mysqli_real_escape_string($conn, $platos);
+    $descripcion = mysqli_real_escape_string($conn, $descripcion);
+    $precio = mysqli_real_escape_string($conn, $precio);
+    $opcionesPersonalizacion = mysqli_real_escape_string($conn, $opcionesPersonalizacion);
 
-    if ($conn->query($sql) === TRUE) {
+    $stmt = $conn->prepare("UPDATE menus SET platos=?, descripcion=?, precio=?, opciones_personalizacion=? WHERE id=?");
+    $stmt->bind_param("ssssi", $platos, $descripcion, $precio, $opcionesPersonalizacion, $id);
+
+    if ($stmt->execute()) {
         echo "Menú actualizado exitosamente";
+        exit();
     } else {
         echo "Error al actualizar el menú: " . $conn->error;
     }
+
+    $stmt->close();
 }
 
 $conn->close();
-
 ?>

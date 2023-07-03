@@ -5,13 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menú de Restaurante COROSO</title>
-    <link rel="stylesheet" href="/img/cocinera_logo.png">
+    <link rel="icon" href="../img/cocinera_logo.png">
     <link rel="stylesheet" href="menu.css">
 </head>
 <body>
-    
-
     <main>
+        <img class="logo" src="../img/cocinera_logo.png" alt="logo">
         <div>
             <h2>Crear Menú</h2>
             <form action="menu.php" method="POST">
@@ -27,7 +26,7 @@
                 <label for="opcionesPersonalizacion">Opciones de Personalización:</label>
                 <input type="text" id="opcionesPersonalizacion" name="opcionesPersonalizacion" required>
 
-                <button type="submit">Crear</button>
+                <button type="submit" name="crear_menu">Crear</button>
             </form>
         </div>
 
@@ -49,7 +48,7 @@
                 <label for="opcionesPersonalizacion">Opciones de Personalización:</label>
                 <input type="text" id="opcionesPersonalizacion" name="opcionesPersonalizacion" required>
 
-                <button type="submit">Actualizar</button>
+                <button type="submit" name="actualizar_menu">Actualizar</button>
             </form>
         </div>
     </main>
