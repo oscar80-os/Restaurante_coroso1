@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Empleados</title>
+  <link rel="icon" href="../img/cocinera_logo.png">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+  <img class="logo" src="../img/cocinera_logo.png" alt="logo">
+
+  <h2>Crear Empleado</h2>
+  <form id="create-form">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="text" name="apellido" placeholder="Apellido" required>
+    <input type="text" name="puesto" placeholder="Puesto" required>
+    <button type="submit">Crear Empleado</button>
+  </form>
+
+  <h2>Lista de Empleados</h2>
+  <table id="empleados-table">
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+      <th>Apellido</th>
+      <th>Puesto</th>
+      <th>Acciones</th>
+    </tr>
+  </table>
+
+  <script src="script.js"></script>
+</body>
+</html>
